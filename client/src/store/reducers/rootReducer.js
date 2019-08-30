@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import isSignedInReducer from "./isSignedIn";
-import citiesReducer from "./cities";
+import isSignedInReducer from "./isSignedInReducer";
+import citiesReducer from "./citiesReducer";
 
 const rootReducer = combineReducers({
   isSignedIn: isSignedInReducer,
