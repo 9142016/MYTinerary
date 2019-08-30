@@ -11,7 +11,8 @@ import Music from "./components/Music";
 import Food from "./components/Food";
 import Flights from "./components/Flights";
 import PublicTransport from "./components/PublicTransport";
-import Cities from "./components/Cities";
+import CitiesList from "./components/CitiesList";
+import ItinerariesList from "./components/ItinerariesList";
 
 class App extends Component {
   state = {
@@ -26,7 +27,8 @@ class App extends Component {
           <p>{this.state.data}</p>
           <Switch>
             <Route exact path="/" component={HomeMainButtons} />
-            <Route exact path="/cities" component={Cities} />
+            <Route exact path="/cities" component={CitiesList} />
+            <Route path="/itineraries/:cityName?" component={ItinerariesList} />
             <Route path="/signIn" component={SignIn} />
             <Route path="/SignUp" component={SignUp} />
             <Route path="/Profile" component={Profile} />
