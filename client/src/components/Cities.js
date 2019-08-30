@@ -1,12 +1,10 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 class cities extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { cities: null };
-  }
   render() {
+    console.log(this.props.cities);
     return (
       <div>
         <h1>cities Dummy</h1>
@@ -14,5 +12,9 @@ class cities extends React.Component {
     );
   }
 }
-
-export default withRouter(cities);
+const mapStateToProps = state => {
+  return {
+    cities: state.cities
+  };
+};
+export default connect(mapStateToProps)(withRouter(cities));
