@@ -13,6 +13,7 @@ import Flights from "./components/Flights";
 import PublicTransport from "./components/PublicTransport";
 import CitiesList from "./components/CitiesList";
 import ItinerariesList from "./components/ItinerariesList";
+import ItineraryDetails from "./components/ItineraryDetails";
 
 class App extends Component {
   state = {
@@ -28,7 +29,11 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={HomeMainButtons} />
             <Route exact path="/cities" component={CitiesList} />
-            <Route path="/itineraries/:cityName?" component={ItinerariesList} />
+            <Route
+              path="/itineraries/:cityName?/:category?"
+              component={ItinerariesList}
+            />
+            <Route path="/itinerary/:id" component={ItineraryDetails} />
             <Route path="/signIn" component={SignIn} />
             <Route path="/SignUp" component={SignUp} />
             <Route path="/Profile" component={Profile} />

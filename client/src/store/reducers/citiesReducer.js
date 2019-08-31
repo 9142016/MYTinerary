@@ -1,6 +1,6 @@
 const citiesReducer = (state = [], action) => {
   switch (action.type) {
-    case "ADD_CITIES":
+    case "FETCH_CITIES":
       return action.payload;
     case "DELETE_CITY":
       let citiesToKeep = state.filter(city => {

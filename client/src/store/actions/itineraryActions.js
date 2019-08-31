@@ -5,15 +5,15 @@ function handleErrors(response) {
   return response;
 }
 
-export const getCities = () => {
+export const getItineraries = payload => {
   return dispatch => {
-    return fetch("/api/cities")
+    return fetch("/api/itineraries/" + payload)
       .then(handleErrors)
       .then(res => res.json())
-      .then(cities => {
+      .then(itineraries => {
         dispatch({
-          type: "FETCH_CITIES",
-          payload: cities
+          type: "FETCH_ITINERARIES",
+          payload: itineraries
         });
       });
   };
