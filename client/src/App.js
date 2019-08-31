@@ -14,6 +14,7 @@ import PublicTransport from "./components/PublicTransport";
 import CitiesList from "./components/CitiesList";
 import ItinerariesList from "./components/ItinerariesList";
 import ItineraryDetails from "./components/ItineraryDetails";
+import Separator from "./components/Separator";
 
 class App extends Component {
   state = {
@@ -25,8 +26,10 @@ class App extends Component {
       <BrowserRouter>
         <div className="root">
           <Navbar />
-          <p>{this.state.data}</p>
+          <Separator />
+
           <Switch>
+            {/* <Route component={Separator} /> */}
             <Route exact path="/" component={HomeMainButtons} />
             <Route exact path="/cities" component={CitiesList} />
             <Route

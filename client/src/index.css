@@ -1,6 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Julius+Sans+One|Karla&display=swap");
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Karla", sans-serif;
+  font-family: "Julius Sans One", sans-serif;
+  font-family: "Karla", sans-serif;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

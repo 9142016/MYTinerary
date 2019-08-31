@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCities } from "../store/actions/citiesActions";
+import "./css/previewLists.css";
 
 class CitiesList extends React.Component {
   //on mount, fetch cities form MongoDB, set redux state, and store here in props
@@ -13,7 +14,7 @@ class CitiesList extends React.Component {
     if (this.props.cities.length > 1) {
       let body = this.props.cities.map(city => {
         return (
-          <div key={city._id}>
+          <div className="cardbody" key={city._id}>
             <NavLink to={"/itineraries/" + city.name}>
               <h2>{city.name}</h2>
               <img src={city.preview_img} alt="preview card for city" />

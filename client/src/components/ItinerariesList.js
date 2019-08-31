@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getItineraries } from "../store/actions/itineraryActions";
+import "./css/previewLists.css";
 
 //component for showing lists of itineraries. the itinerary details page is a seperate component named ItineraryDetails
 
@@ -15,9 +16,21 @@ class ItinerariesList extends React.Component {
     if (this.props.itineraries.length > 1) {
       let body = this.props.itineraries.map(itinerary => {
         return (
-          <div key={itinerary._id}>
+          <div className="cardbody" key={itinerary._id}>
             <NavLink to={"/itinerary/" + itinerary._id}>
               <h2>{itinerary.title}</h2>
+              <span className="ratingAndPrice">
+                <span className="rating">
+                  <span>☆</span>
+                  <span>☆</span>
+                  <span>☆</span>
+                  <span>☆</span>
+                  <span>☆</span>
+                </span>
+                <span className="price">
+                  <h2>{itinerary.price}</h2>
+                </span>
+              </span>
               <img src={itinerary.coverPhoto} alt="cover for itinerary" />
             </NavLink>
           </div>
@@ -30,8 +43,7 @@ class ItinerariesList extends React.Component {
   render() {
     return (
       <div>
-        <h1>Itineraries List Dummy</h1>
-        <h2>{this.props.match.params.cityName + "'s itineraries:"}</h2>
+        <h1>{this.props.match.params.cityName}</h1>
         {this.itinerariesBody()}
       </div>
     );
