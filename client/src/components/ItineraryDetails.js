@@ -1,20 +1,42 @@
 import React from "react";
 import { connect } from "react-redux";
+import "./css/itineraryDetails.css";
 
 // component displaying itinerary details page
 
 class ItineraryDetails extends React.Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   render() {
     return (
       <div>
-        <h1>{this.props.itinerary.title}</h1>
+        <div className="title">
+          <h1>{this.props.itinerary.title}</h1>
+        </div>
         <img
           src={this.props.itinerary.coverPhoto}
           alt="coverphoto for this itinerary"
         />
-        <h3>In {this.props.itinerary.city}</h3>
-        <p>rating: {this.props.itinerary.rating}</p>
-        <p>price: {this.props.itinerary.price}</p>
+        <span className="details">
+          <h3>In {this.props.itinerary.city}</h3>
+          <p>rating: {this.props.itinerary.rating}</p>
+          <p>price: {this.props.itinerary.price}</p>
+        </span>
+
+        <div className="activitiesContainer">
+          {this.props.itinerary.activities.map((activity, index) => {
+            return (
+              <div key={index}>
+                <h2> • {activity.name}</h2>
+                <h3>
+                  Cost:{activity.cost}. Duration: {activity.duration} hours.
+                </h3>
+                <p>{activity.comments}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }

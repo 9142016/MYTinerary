@@ -8,7 +8,12 @@ import "./css/previewLists.css";
 
 class ItinerariesList extends React.Component {
   componentDidMount() {
-    this.props.getItineraries(this.props.match.params.cityName);
+    let param = this.props.match.params.cityName
+      ? this.props.match.params.cityName
+      : this.props.match.params.category
+      ? this.props.match.params.category
+      : "";
+    this.props.getItineraries(param);
   }
 
   //function that creates styled divs per relevant itinerary
@@ -19,19 +24,20 @@ class ItinerariesList extends React.Component {
           <div className="cardbody" key={itinerary._id}>
             <NavLink to={"/itinerary/" + itinerary._id}>
               <h2>{itinerary.title}</h2>
-              <span className="ratingAndPrice">
-                <span className="rating">
+
+              <img src={itinerary.coverPhoto} alt="cover for itinerary" />
+              <span className="itineraryDetailsUnderTitle">
+                <h3 className="detail">{itinerary.city}</h3>
+
+                <h3 className="price detail">{itinerary.price}</h3>
+                <span className="rating detail">
                   <span>☆</span>
                   <span>☆</span>
                   <span>☆</span>
                   <span>☆</span>
                   <span>☆</span>
-                </span>
-                <span className="price">
-                  <h2>{itinerary.price}</h2>
                 </span>
               </span>
-              <img src={itinerary.coverPhoto} alt="cover for itinerary" />
             </NavLink>
           </div>
         );

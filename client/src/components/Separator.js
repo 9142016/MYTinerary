@@ -7,9 +7,7 @@ const Separator = props => {
       style={
         props.location.pathname === "/" ? { height: "1px" } : { height: "70px" }
       }
-    >
-      {console.log(props)}
-    </div>
+    ></div>
   );
 };
 

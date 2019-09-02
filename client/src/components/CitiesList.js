@@ -29,7 +29,12 @@ class CitiesList extends React.Component {
   render() {
     return (
       <div>
-        <h1>All Cities</h1>
+        <div className="citiesHeading">
+          <h1>All Cities</h1>
+          <NavLink to="/itineraries/">
+            <p>see all itineraries</p>
+          </NavLink>
+        </div>
         {this.citiesBody()}
       </div>
     );

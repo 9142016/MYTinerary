@@ -20,7 +20,7 @@ function HomeMainButtons() {
           <img src={require("../imgs/icon-bus.png")} alt="busIcon" />
         </Link>
       </div>
-      <h3>
+      <h3 className="quote">
         Insert fluffy, inspirational, quote so that people spend money here!
       </h3>
       <div className="startContainer">
