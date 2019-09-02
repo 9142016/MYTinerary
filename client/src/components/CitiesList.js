@@ -5,36 +5,76 @@ import { getCities } from "../store/actions/citiesActions";
 import "./css/previewLists.css";
 
 class CitiesList extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      citiesFilter: ""
+    };
+  }
   //on mount, fetch cities form MongoDB, set redux state, and store here in props
   componentDidMount() {
     this.props.getCities();
   }
+
+  // determines relevant cities to filter
+  // if this.state.citiesFilter is empty, return all cities from props provided by redux state
+  // otherwise if this.state.citiesFilter is NOT empty, map relevent array from all cities using the filter
+  returnRelevantCities() {
+    let cities = [];
+    this.state.citiesFilter !== ""
+      ? this.props.cities.map(city => {
+          if (
+            city.name
+              .toLowerCase()
+              .includes(this.state.citiesFilter.toLowerCase())
+          ) {
+            cities.push(city);
+          }
+        })
+      : (cities = this.props.cities);
+    return cities;
+  }
+
   //function that creates styled divs per city
   citiesBody() {
-    if (this.props.cities.length > 1) {
-      let body = this.props.cities.map(city => {
-        return (
-          <div className="cardbody" key={city._id}>
-            <NavLink to={"/itineraries/" + city.name}>
-              <h2>{city.name}</h2>
-              <img src={city.preview_img} alt="preview card for city" />
-            </NavLink>
-          </div>
-        );
-      });
-      return body;
-    }
+    let relevantCities = this.returnRelevantCities();
+    let body = relevantCities.map(city => {
+      return (
+        <div className="cardbody" key={city._id}>
+          <NavLink to={"/itineraries/" + city.name}>
+            <h2>{city.name}</h2>
+            <img src={city.preview_img} alt="preview card for city" />
+          </NavLink>
+        </div>
+      );
+    });
+    return body;
+  }
+
+  // function that is called onChange of the searchbar value. updates this.state value
+  onChangeOfFilterValue(event) {
+    this.setState({
+      citiesFilter: event.target.value
+    });
   }
 
   render() {
     return (
-      <div>
-        <div className="citiesHeading">
+      <div className="citiesMainDiv">
+        <div className="heading">
           <h1>All Cities</h1>
-          <NavLink to="/itineraries/">
-            <p>see all itineraries</p>
-          </NavLink>
+
+          <input
+            type="text"
+            className="filterTextBox"
+            placeholder="search"
+            onChange={this.onChangeOfFilterValue.bind(this)}
+          />
         </div>
+        <NavLink to="/itineraries/" className="seeAllLink">
+          or see all itineraries
+        </NavLink>
+
         {this.citiesBody()}
       </div>
     );

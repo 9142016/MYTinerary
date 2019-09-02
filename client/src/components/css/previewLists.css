@@ -1,3 +1,34 @@
+.heading {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: 2vh;
+}
+.seeAllLink {
+  text-decoration: none;
+  color: rgb(241, 137, 0);
+  padding-top: 2vh;
+  margin-left: 10vw;
+}
+
+.filterTextBox {
+  width: 120px;
+  height: 3vh;
+  border: none;
+  border-bottom: 2px solid rgb(27, 37, 131);
+  padding-top: 2vh;
+
+  text-align: center;
+  margin-left: auto;
+}
+
+.heading h1 {
+  margin: 3vw;
+  margin-bottom: 0;
+}
+
 .cardbody {
   margin-bottom: 20px;
 }
@@ -41,18 +72,3 @@
 }
 
 /* cities specific */
-.citiesHeading {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-left: 3vw;
-  padding-right: 3vw;
-}
-
-.citiesHeading p {
-  padding-top: 15px;
-}
-.citiesHeading a {
-  color: rgb(37, 35, 138);
-  text-decoration: none;
-}
