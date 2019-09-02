@@ -37,6 +37,18 @@ class ItineraryDetails extends React.Component {
             );
           })}
         </div>
+        <div className="commentsSection">
+          <h2>Comments</h2>
+          <div className="createCommentContainer">
+            <input type="text" placeholder="Share your thoughts!" />
+            <button>Submit</button>
+          </div>
+          {this.props.itinerary.comments ? (
+            <p>There are comments. </p>
+          ) : (
+            <p className="noComments">Be the first to comment!</p>
+          )}
+        </div>
       </div>
     );
   }

@@ -25,10 +25,58 @@ p {
   flex-direction: row;
   justify-content: space-between;
 }
-h3 {
-  padding: 0;
-}
 .activitiesContainer {
   padding-left: 5vw;
   padding-right: 5vw;
+}
+.activitiesContainer h3 {
+  padding: 0;
+}
+
+.commentsSection h2 {
+  margin-left: 5vw;
+  margin-bottom: 1vh;
+}
+
+.createCommentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.createCommentContainer input {
+  width: 90%;
+  height: 100px;
+  padding: 5px;
+  margin: 10px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+
+.createCommentContainer button {
+  background-image: linear-gradient(
+    90deg,
+    rgba(58, 103, 180, 1) 0%,
+    rgba(253, 141, 29, 0.9) 50%,
+    rgba(252, 244, 69, 0.8) 100%
+  );
+  font-family: "Julius Sans One", sans-serif;
+  font-family: "Karla", sans-serif;
+  border: none;
+  color: black;
+  font-weight: bold;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  left: 50%;
+}
+.noComments {
+  color: rgba(255, 128, 0, 0.9);
+  text-align: center;
 }
