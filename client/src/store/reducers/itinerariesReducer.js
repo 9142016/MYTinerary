@@ -1,13 +1,34 @@
-const itinerariesReducer = (state = [], action) => {
+let initState = {
+  currentItineraryID: "",
+  relevantItineraries: []
+};
+
+const itinerariesReducer = (state = initState, action) => {
   switch (action.type) {
-    case "FETCH_ITINERARIES":
-      return action.payload;
-    case "DELETE_ITINERARY":
-      let itinsToKeep = state.filter(itinerary => {
-        return action._id !== itinerary._id;
-      });
+    case "FETCH_RELEVENT_ITINERARIES":
       return {
-        itinsToKeep
+        ...state,
+        relevantItineraries: action.payload
+      };
+    case "ADD_CURRENT_ITINERARY_ID":
+      return {
+        ...state,
+        currentItineraryID: action.payload
+      };
+    case "CHANGE_RELEVANT_ITINERARIES":
+      return {
+        ...state,
+        relevantItineraries: action.payload
+      };
+    case "UPDATE_ITINERARY":
+      return {
+        ...state,
+        allItineraries: state.relevantItineraries.map(itinerary => {
+          if (itinerary._id === action.payload.itineraryID) {
+            return action.payload.updatedItinerary;
+          }
+          return itinerary;
+        })
       };
     default:
       return state;
