@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const ItineraryModel = require("../models/itineraries");
-const UsersModel = require("../models/users");
 const CitiesModel = require("../models/cities");
 
 //test route
@@ -9,6 +8,7 @@ router.get("/api", function(req, res) {
   res.send({ express: "YOUR EXPRESS BACKEND IS CONNECTED TO REACT" });
 });
 
+//////////////////////////////////////////////////////// CITIES
 // get all cities
 router.get("/api/cities", async (req, res) => {
   const cities = await CitiesModel.find({});
@@ -19,6 +19,18 @@ router.get("/api/cities", async (req, res) => {
   }
 });
 
+// update city
+router.put("/api/cities/:id", function(req, res, next) {
+  CitiesModel.findByIdAndUpdate({ _id: req.params.id }, req.body).then(
+    function() {
+      CitiesModel.findOne({ _id: req.params.id }).then(function(city) {
+        res.send(city);
+      });
+    }
+  );
+});
+
+//////////////////////////////////////////////////////// ITINERARIES
 // get all itineraries
 router.get("/api/itineraries", async (req, res) => {
   const itineraries = await ItineraryModel.find({});
@@ -30,7 +42,7 @@ router.get("/api/itineraries", async (req, res) => {
 });
 
 // get itineraries under specific city
-router.get("/api/itineraries/:city", async (req, res) => {
+router.get("/api/itineraries/byCity/:city", async (req, res) => {
   const itineraries = await ItineraryModel.find({ city: req.params.city });
   try {
     res.send(itineraries);
@@ -39,16 +51,26 @@ router.get("/api/itineraries/:city", async (req, res) => {
   }
 });
 
-//post
-router.post("/api/users", function(req, res) {
-  UsersModel.create(req.body).then(function(inputted) {
-    res.send(inputted);
-  });
+// get specific itinerary
+router.get("/api/itineraries/byID/:id", async (req, res) => {
+  const itinerary = await ItineraryModel.find({ _id: req.params.id });
+  try {
+    res.send(itinerary);
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
-router.post("/api/itineraries", function(req, res) {
-  ItineraryModel.create(req.body).then(function(inputted) {
-    res.send(inputted);
+//add new comment to itinerary
+router.post("/api/itineraries/addComment/:itineraryID", async (req, res) => {
+  ItineraryModel.findOneAndUpdate(
+    req.params.itineraryID,
+    { $push: { comments: req.body } },
+    {
+      new: true
+    }
+  ).then(function(itinerary) {
+    res.send(itinerary);
   });
 });
 
