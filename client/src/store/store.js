@@ -4,11 +4,11 @@ import thunk from "redux-thunk";
 import persistState from "redux-localstorage";
 
 const store = createStore(
-  rootReducer /* preloadedState */,
+  rootReducer,
   compose(
+    persistState(),
     applyMiddleware(thunk),
-    persistState(/*paths, config*/),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 );
 
