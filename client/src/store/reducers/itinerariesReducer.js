@@ -23,7 +23,7 @@ const itinerariesReducer = (state = initState, action) => {
     case "UPDATE_ITINERARY":
       return {
         ...state,
-        allItineraries: state.relevantItineraries.map(itinerary => {
+        relevantItineraries: state.relevantItineraries.map(itinerary => {
           if (itinerary._id === action.payload.itineraryID) {
             return action.payload.updatedItinerary;
           }
